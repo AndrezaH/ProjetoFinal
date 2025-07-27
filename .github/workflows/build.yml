@@ -1,12 +1,10 @@
 name: Build
-
 on:
   push:
     branches:
       - finalproject
   pull_request:
     types: [opened, synchronize, reopened]
-
 jobs:
   sonarqube:
     name: SonarQube
@@ -14,12 +12,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Clones superficiais devem ser desativados para análise completa
-      
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5
-        with:
-          projectKey: "AndrezaH_ProjetoFinal"     # <- adicione seu projectKey aqui
-          organization: "Aandrezah"                # <- adicione sua organização aqui
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+            projectKey: AndrezaH_ProjetoFinal
+            organization: andrezah
+  
